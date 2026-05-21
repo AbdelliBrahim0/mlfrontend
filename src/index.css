@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Manrope', system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(53, 118, 219, 0.24), transparent 26%),
+    radial-gradient(circle at 86% 18%, rgba(102, 170, 255, 0.2), transparent 25%),
+    linear-gradient(160deg, #f4f8ff 0%, #e6eefc 38%, #f5f9ff 100%);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
