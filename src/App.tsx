@@ -9,9 +9,11 @@ import type {
   PredictionRequest,
   PredictionResponse,
 } from './types/prediction'
+import { VehiclePage } from './pages/VehiclePage'
 import './App.css'
 
 function App() {
+  const [activeView, setActiveView] = useState<'person' | 'vehicle'>('person')
   const [step, setStep] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -69,7 +71,37 @@ function App() {
   }
 
   return (
-    <main className="page-shell">
+    <div className="workspace-shell">
+      <header className="mode-switcher" aria-label="Selection de page">
+        <div>
+          <p className="eyebrow">Nawress Astree</p>
+          <h1>Plateforme de scoring vehicule et conducteur</h1>
+        </div>
+
+        <div className="mode-toggle" role="tablist" aria-label="Pages disponibles">
+          <button
+            type="button"
+            className={activeView === 'person' ? 'active' : ''}
+            aria-pressed={activeView === 'person'}
+            onClick={() => setActiveView('person')}
+          >
+            Profil conducteur
+          </button>
+          <button
+            type="button"
+            className={activeView === 'vehicle' ? 'active' : ''}
+            aria-pressed={activeView === 'vehicle'}
+            onClick={() => setActiveView('vehicle')}
+          >
+            Analyse vehicule
+          </button>
+        </div>
+      </header>
+
+      {activeView === 'vehicle' ? (
+        <VehiclePage />
+      ) : (
+        <main className="page-shell">
       <section className="hero-panel">
         <p className="eyebrow">Profil Conducteur</p>
         <h1>Simulation du score de risque</h1>
@@ -208,14 +240,16 @@ function App() {
         {result ? <PredictionResult data={result} /> : null}
       </section>
 
-      <aside className="note-panel">
-        <h2>Prochaine etape architecture</h2>
-        <p>
-          Le backend est deja preconfigure pour ajouter la logique metier
-          parallele et afficher ensuite la comparaison avec le score modele.
-        </p>
-      </aside>
-    </main>
+          <aside className="note-panel">
+            <h2>Prochaine etape architecture</h2>
+            <p>
+              Le backend est deja preconfigure pour ajouter la logique metier
+              parallele et afficher ensuite la comparaison avec le score modele.
+            </p>
+          </aside>
+        </main>
+      )}
+    </div>
   )
 }
 

@@ -27,7 +27,6 @@ export function PredictionResult({ data }: PredictionResultProps) {
       <div className="score-block">
         <p>Score final</p>
         <h3>{finalScore.toFixed(2)} / 100</h3>
-        <small>Niveau de risque: {data.risk_level}</small>
       </div>
 
       <div className="score-metrics">
